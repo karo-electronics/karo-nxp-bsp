@@ -170,7 +170,7 @@ for review to <yocto-devel@karo-electronics.de>.
 When creating patches of the last commit, please use something like:
 
 [source,console]
-$: git format-patch -s --subject-prefix='karo-nxp-bsp][PATCH][master' -1
+$: git format-patch -s --subject-prefix='karo-nxp-bsp][PATCH][imx-linux-sumo' -1
 
 When sending patches, please use something like:
 
