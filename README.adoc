@@ -1,5 +1,15 @@
 = Ka-Ro flavoured NXP i.MX BSP release
 
+== Documentation hint
+
+This is the repository readme for people comfortable with Yocto, Bitbake, [...]
+
+See our official documentation here:
+  
+link:https://karo-electronics.github.io/docs/yocto-sumo-guide/index.html[https://karo-electronics.github.io/docs/yocto-sumo-guide/index.html]
+
+== Description
+
 This is the BSP manifest repository for the Ka-Ro flavoured version of NXP's
 i.MX8M Mini Yocto BSP. (rev. L4.14.78_1.0.0_ga 2019-01-17 - as can be found
 link:https://source.codeaurora.org/external/imx/imx-manifest[here @ CodeAurora])
@@ -9,7 +19,6 @@ the Ka-Ro TX8M-1610, which is Ka-Ro's i.MX8M Mini solution.
 
 
 == Downloading
-
 To get the BSP you need to have `repo` installed and use it as:
 
 Install the `repo` utility:
