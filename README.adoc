@@ -37,7 +37,7 @@ Download the BSP source:
 $: PATH=${PATH}:~/bin
 $: mkdir fsl-bsp-karo-tx8m
 $: cd fsl-bsp-karo-tx8m
-$: repo init --no-clone-bundle -u https://github.com/karo-electronics/karo-bsp -b imx-linux-sumo
+$: repo init --no-clone-bundle -u https://github.com/karo-electronics/karo-nxp-bsp -b imx-linux-sumo
 $: repo sync --no-clone-bundle
 
 NOTE: That `fsl-bsp-karo-tx8m` is a directory name for the BSP that can be
