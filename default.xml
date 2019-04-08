@@ -32,7 +32,7 @@
       meta-freescale-3rdparty is set aside for the time when the community BSP
       is up-to-date
   --> 
-  <project remote="karo" revision="none" name="meta-karo-nxp" path="sources/meta-karo-nxp" />
+  <project remote="karo" revision="5999bf7159a6d07176409c31592471803ac7fedd" name="meta-karo-nxp" path="sources/meta-karo-nxp" />
 
   <project remote="OSSystems" revision="75640e14e325479c076b6272b646be7a239c18aa" name="meta-browser" path="sources/meta-browser" />
   <project remote="QT5" revision="d4e7f73d04e8448d326b6f89908701e304e37d65" name="meta-qt5" path="sources/meta-qt5" />
