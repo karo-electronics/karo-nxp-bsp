@@ -30,7 +30,7 @@
       meta-freescale-3rdparty is set aside for the time when the community BSP
       is up-to-date
   -->
-  <project remote="karo" revision="imx-linux-sumo" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
+  <project remote="karo" revision="4.14.98-sumo" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
      <linkfile src="base/fsl-setup-release.sh" dest="karo-nxp-release.sh"/>
   </project>
 
