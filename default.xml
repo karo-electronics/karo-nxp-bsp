@@ -11,7 +11,7 @@
   <remote fetch="https://source.codeaurora.org/external/imx" name="CAF"/>
   <remote fetch="git://github.com/karo-electronics" name="karo"/>
 
-  <project remote="yocto" revision="5ddf7fff992b065ee512878d2fe65f3e35d818cf" name="poky" path="sources/poky"/>
+  <project remote="yocto" revision="cbb677e9a09d5dad34404a851f7c23aeb5122465" name="poky" path="sources/poky"/>
   <project remote="yocto" revision="86772601e7f6ea188dfaf64097edafc05e15aef3" name="meta-freescale" path="sources/meta-freescale"/>
 
   <project remote="oe" revision="8760facba1bceb299b3613b8955621ddaa3d4c3f" name="meta-openembedded" path="sources/meta-openembedded"/>
@@ -30,14 +30,14 @@
       meta-freescale-3rdparty is set aside for the time when the community BSP
       is up-to-date
   -->
-  <project remote="karo" revision="4.14.98-2.2.0-sumo" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
+  <project remote="karo" revision="4.14.98-2.3.0-sumo" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
      <linkfile src="base/fsl-setup-release.sh" dest="karo-nxp-release.sh"/>
   </project>
 
   <project remote="OSSystems" revision="75640e14e325479c076b6272b646be7a239c18aa" name="meta-browser" path="sources/meta-browser" />
   <project remote="QT5" revision="d4e7f73d04e8448d326b6f89908701e304e37d65" name="meta-qt5" path="sources/meta-qt5" />
 
-  <project remote="CAF" revision="c2602efbe743dbe5e7907646694d772144b56b2d" name="meta-fsl-bsp-release" path="sources/meta-fsl-bsp-release" >
+  <project remote="CAF" revision="b060c22b586972b11fe76bad9664589196dab9ec" name="meta-fsl-bsp-release" path="sources/meta-fsl-bsp-release" >
      <linkfile src="imx/tools/fsl-setup-release.sh" dest="fsl-setup-release.sh"/>
      <linkfile src="imx/README" dest="README-IMXBSP"/>
   </project>
