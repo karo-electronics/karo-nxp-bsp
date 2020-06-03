@@ -8,38 +8,37 @@
   <remote fetch="git://github.com/openembedded" name="oe"/>
   <remote fetch="git://github.com/OSSystems" name="OSSystems"/>
   <remote fetch="git://github.com/meta-qt5"  name="QT5"/>
+  <remote fetch="git://github.com/TimesysGit"  name="Timesys"/>
+  <remote fetch="git://github.com/meta-rust"  name="rust"/>
   <remote fetch="https://source.codeaurora.org/external/imx" name="CAF"/>
   <remote fetch="git://github.com/karo-electronics" name="karo"/>
 
-  <project remote="yocto" revision="cbb677e9a09d5dad34404a851f7c23aeb5122465" name="poky" path="sources/poky"/>
-  <project remote="yocto" revision="86772601e7f6ea188dfaf64097edafc05e15aef3" name="meta-freescale" path="sources/meta-freescale"/>
+  <project remote="yocto" revision="a8f6e31bebc5a551fab1fec8d67489af80878f71" name="poky" path="sources/poky"/>
+  <project remote="community" revision="94f4f086c6014cbcfd10bda3540d19558c8bf0b0" name="meta-freescale" path="sources/meta-freescale"/>
 
-  <project remote="oe" revision="8760facba1bceb299b3613b8955621ddaa3d4c3f" name="meta-openembedded" path="sources/meta-openembedded"/>
+  <project remote="oe" revision="bb65c27a772723dfe2c15b5e1b27bcc1a1ed884c" name="meta-openembedded" path="sources/meta-openembedded"/>
 
-  <project remote="community" revision="70535e13dd2aabbad53243518f4cc5064d284592" name="fsl-community-bsp-base" path="sources/base">
-      <linkfile dest="README" src="README"/>
-      <linkfile dest="setup-environment" src="setup-environment"/>
+  <project remote="community" revision="6e0d5d90fa8dd0c7abee04bbe103bc6a5ff8a8f7" name="fsl-community-bsp-base" path="sources/base">
+    <linkfile dest="README" src="README"/>
+    <linkfile dest="setup-environment" src="setup-environment"/>
   </project>
 
-  <project remote="community" revision="82037216280a39957fb4272581637abec734ad50" name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty"/>
-  <project remote="community" revision="f7e2216e93aff14ac32728a13637a48df436b7f4" name="meta-freescale-distro" path="sources/meta-freescale-distro"/>
+  <project remote="community" revision="aea3771baa77e74762358ceb673d407e36637e5f" name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty"/>
+  <project remote="community" revision="ca27d12e4964d1336e662bcc60184bbff526c857" name="meta-freescale-distro" path="sources/meta-freescale-distro"/>
 
-  <!--
-      Ka-Ro meta layer for providing TX8M COM flavour to NXP's i.MX BSP
-      release Yocto (see README.adoc for more). The usage of the provided
-      meta-freescale-3rdparty is set aside for the time when the community BSP
-      is up-to-date
-  -->
   <project remote="karo" revision="4.14.98-2.3.0-sumo" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
      <linkfile src="base/fsl-setup-release.sh" dest="karo-nxp-release.sh"/>
   </project>
 
-  <project remote="OSSystems" revision="75640e14e325479c076b6272b646be7a239c18aa" name="meta-browser" path="sources/meta-browser" />
-  <project remote="QT5" revision="d4e7f73d04e8448d326b6f89908701e304e37d65" name="meta-qt5" path="sources/meta-qt5" />
+  <project remote="OSSystems" revision="5f365ef0f842ba4651efe88787cf9c63bc8b6cb3" name="meta-browser" path="sources/meta-browser" />
+  <project remote="rust" revision="d8d77be1292064a02adcb5e72e293604b704f69b" name="meta-rust" path="sources/meta-rust" />
+  <project remote="QT5" revision="a582fd4c810529e9af0c81700407b1955d1391d2" name="meta-qt5" path="sources/meta-qt5" />
 
-  <project remote="CAF" revision="b060c22b586972b11fe76bad9664589196dab9ec" name="meta-fsl-bsp-release" path="sources/meta-fsl-bsp-release" >
-     <linkfile src="imx/tools/fsl-setup-release.sh" dest="fsl-setup-release.sh"/>
-     <linkfile src="imx/README" dest="README-IMXBSP"/>
+  <project remote="Timesys" revision="ef776166d7a4f7c8677137adbfd6adee6a0e2389" name="meta-timesys" path="sources/meta-timesys" />
+
+  <project remote="CAF" revision="63ead63f53bfd2fbe8499859c569ec5ab7cd10ce" name="meta-imx" path="sources/meta-imx" upstream="zeus-5.4.3-2.0.0" >
+     <linkfile src="tools/imx-setup-release.sh" dest="imx-setup-release.sh"/>
+     <linkfile src="README" dest="README-IMXBSP"/>
   </project>
 
 </manifest>
