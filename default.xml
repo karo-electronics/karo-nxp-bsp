@@ -25,8 +25,8 @@
   <project name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty" remote="community" revision="dbcc686f52c3c84db8cb86aa8973a4e373651b98"/>
   <project name="meta-freescale-distro" path="sources/meta-freescale-distro" remote="community" revision="ca27d12e4964d1336e662bcc60184bbff526c857"/>
 
-  <project remote="karo" revision="zeus-devel" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
-    <linkfile src="base/fsl-setup-release.sh" dest="karo-nxp-release.sh"/>
+  <project remote="karo" revision="zeus" name="meta-karo-nxp" path="sources/meta-karo-nxp" >
+    <linkfile src="base/karo-setup-release.sh" dest="karo-nxp-release.sh"/>
   </project>
 
   <project name="meta-imx" path="sources/meta-imx" remote="CAF" revision="6e7809dfb8d9d97b280fa896f507071163dacbf1" upstream="zeus-5.4.24-2.1.0">
