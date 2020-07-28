@@ -4,8 +4,7 @@
 
 See our official documentation here:
 
-https://karo-electronics.github.io/docs/yocto-guide/yocto-sumo-guide/index.html
-
+https://karo-electronics.github.io/docs/yocto-guide/nxp-zeus/index.html
 
 ---
 https://www.karo-electronics.de
