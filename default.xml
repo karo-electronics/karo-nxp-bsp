@@ -28,6 +28,7 @@
 
   <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="zeus"/>
   <project name="meta-imx" path="sources/meta-imx" remote="CAF" revision="6e7809dfb8d9d97b280fa896f507071163dacbf1" upstream="zeus-5.4.24-2.1.0"/>
+  <project name="meta-karo-distro" path="sources/meta-karo-distro" remote="karo" revision="zeus"/>
 
   <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="9e60d30669a2ad0598e9abf0cd15ee06b523986b"/>
   <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="231c3d74cfcf734c3415e86ea8dd97f73ddced9d"/>
