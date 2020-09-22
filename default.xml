@@ -3,7 +3,6 @@
 
   <default sync-j="2"/>
 
-  <remote fetch="git://github.com/karo-electronics/poky" name="poky"/>
   <remote fetch="git://github.com/Freescale" name="community"/>
   <remote fetch="git://github.com/openembedded" name="oe"/>
   <remote fetch="git://github.com/OSSystems" name="OSSystems"/>
@@ -29,7 +28,7 @@
 
   <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="e97b31ca34018393544f82f68855bf5f82a32da4"/>
 
-  <project name="poky" path="sources/poky" remote="poky" revision="86baaa09771291a46405cb6df82f9955b155c5d9"/>
+  <project name="karo" path="sources/poky" remote="poky" revision="86baaa09771291a46405cb6df82f9955b155c5d9"/>
 
   <project name="karo-nxp-base" path="sources/base" remote="karo" revision="zeus-devel">
     <linkfile dest="README" src="README"/>
