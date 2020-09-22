@@ -34,7 +34,7 @@
   <project name="karo-nxp-base" path="sources/base" remote="karo" revision="zeus-devel">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
-    <linkfile src="base/karo-setup-release.sh" dest="karo-setup-release.sh"/>
+    <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
   <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="zeus-devel"/>
