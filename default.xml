@@ -32,15 +32,15 @@
 
   <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="e97b31ca34018393544f82f68855bf5f82a32da4"/>
 
-  <project name="poky" path="sources/poky" remote="karo" revision="KARO-2020-10-09-nxp"/>
+  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2020-10-09-nxp"/>
 
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="KARO-2020-10-09">
+  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2020-10-09">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="KARO-2020-10-09"/>
-  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="KARO-2020-10-09"/>
+  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2020-10-09"/>
+  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2020-10-09"/>
 
 </manifest>
