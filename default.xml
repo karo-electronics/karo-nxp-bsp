@@ -34,7 +34,7 @@
 
   <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2020-10-09-nxp"/>
 
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2020-10-09">
+  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2020-10-27">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
