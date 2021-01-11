@@ -40,7 +40,7 @@
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2020-12-03"/>
-  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2020-11-17"/>
+  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2021-01-11"/>
+  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-01-11"/>
 
 </manifest>
