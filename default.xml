@@ -41,6 +41,6 @@
   </project>
 
   <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2021-01-11"/>
-  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-01-11"/>
+  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-01-20"/>
 
 </manifest>
