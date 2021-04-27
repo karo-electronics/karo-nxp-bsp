@@ -1,12 +1,12 @@
-### Ka-Ro flavoured NXP i.MX BSP release ###
+## Ka-Ro NXP i.MX BSP ##
 
-## Documentation ##
+Ka-Ro flavoured NXP i.MX BSP release.
 
-See our official documentation here:
+### BSP Checkout ###
 
-https://karo-electronics.github.io/docs/yocto-guide/nxp-zeus/index.html
+https://karo-electronics.github.io/docs/yocto-guide/nxp/setup.html#bsp-checkout
 
 ---
-https://www.karo-electronics.de
+https://www.karo-electronics.com
 
 Contact support: support@karo-electronics.de
