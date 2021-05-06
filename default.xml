@@ -1,46 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-
+  <remote name="CAF" fetch="https://source.codeaurora.org/external/imx"/>
+  <remote name="OSSystems" fetch="https://github.com/OSSystems"/>
+  <remote name="QT5" fetch="https://github.com/meta-qt5"/>
+  <remote name="Timesys" fetch="https://github.com/TimesysGit"/>
+  <remote name="clang" fetch="https://github.com/kraj"/>
+  <remote name="community" fetch="https://github.com/Freescale"/>
+  <remote name="imx-support" fetch="https://source.codeaurora.org/external/imxsupport"/>
+  <remote name="oe" fetch="https://github.com/openembedded"/>
+  <remote name="python2" fetch="https://git.openembedded.org"/>
+  <remote name="rust" fetch="https://github.com/meta-rust"/>
+  <remote name="yocto" fetch="https://git.yoctoproject.org/git"/>
+  <remote name="karo" fetch="git://github.com/karo-electronics"/>
+  
   <default sync-j="2"/>
-
-  <remote fetch="git://github.com/Freescale" name="community"/>
-  <remote fetch="git://github.com/openembedded" name="oe"/>
-  <remote fetch="git://github.com/OSSystems" name="OSSystems"/>
-  <remote fetch="git://github.com/meta-qt5"  name="QT5"/>
-  <remote fetch="git://github.com/TimesysGit"  name="Timesys"/>
-  <remote fetch="git://github.com/meta-rust"  name="rust"/>
-  <remote fetch="git://git.openembedded.org"  name="python2"/>
-  <remote fetch="https://source.codeaurora.org/external/imx" name="CAF"/>
-  <remote fetch="https://source.codeaurora.org/external/imxsupport" name="imx-support"/>
-  <remote fetch="https://github.com/kraj" name="clang"/>
-  <remote fetch="git://github.com/karo-electronics" name="karo"/>
-
+  
   <project name="meta-browser" path="sources/meta-browser" remote="OSSystems" revision="ee3be3b5986a4aa0e73df2204a625ae1fe5df37e"/>
-  <project name="meta-clang" path="sources/meta-clang" remote="clang" revision="711e593d5984aad3bf35c51b7ac4482982bc16c7"/>
-
-  <project name="meta-freescale" path="sources/meta-freescale" remote="community" revision="14f1a630a47375432f93c556927b879b51d84c4e"/>
-  <project name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty" remote="community" revision="dbcc686f52c3c84db8cb86aa8973a4e373651b98"/>
-  <project name="meta-freescale-distro" path="sources/meta-freescale-distro" remote="community" revision="ca27d12e4964d1336e662bcc60184bbff526c857"/>
-
-  <project name="meta-imx" path="sources/meta-imx" remote="CAF" revision="refs/tags/rel_imx_5.4.70_2.3.1" upstream="zeus-5.4.70-2.3.1"/>
-
+  <project name="meta-clang" path="sources/meta-clang" remote="clang" revision="61faae011fb95712064f2c58abe6293f0daeeab5"/>
+  <project name="meta-freescale" path="sources/meta-freescale" remote="community" revision="41d4f625c6db7a778f0f9a735c2cb48e023bc49b"/>
+  <project name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty" remote="community" revision="b85d08a55cb833bfc4e8b5034ff804286c67620e"/>
+  <project name="meta-freescale-distro" path="sources/meta-freescale-distro" remote="community" revision="11be3f01962df8436c5c7b0d61cd3dbd1b872905"/>
+  <project name="meta-imx" path="sources/meta-imx" remote="CAF" revision="refs/tags/rel_imx_5.10.9_1.0.0" upstream="gatesgarth-5.10.9-1.0.0"/>
   <project name="meta-nxp-demo-experience" path="sources/meta-nxp-demo-experience" remote="imx-support" revision="c7263d9f3cc7bbf44e7164ffeda494cf283d3dec" upstream="zeus-5.4.24-2.1.0"/>
-  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="2b5dd1eb81cd08bc065bc76125f2856e9383e98b"/>
-  <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="4400f9155ec193d028208cf0c66aeed2ba2b00ab"/>
-  <project name="meta-qt5" path="sources/meta-qt5" remote="QT5" revision="21ce4c124d9a972d9122f87c64ac2773bf04c284"/>
+  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="ac4ccd2fbbb599d75ca4051911fcbaca39dbe6d7"/>
+  <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="c43c29e57f16af4e77441b201855321fbd546661"/>
+  <project name="meta-qt5" path="sources/meta-qt5" remote="QT5" revision="8d5672cc6ca327576a814d35dfb5d59ab24043cb"/>
   <project name="meta-rust" path="sources/meta-rust" remote="rust" revision="53bfa324891966a2daf5d36dc13d4a43725aebed"/>
+  <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="00f81fbdf7fba2a09ff83d14fc3b040e9ae63b42"/>
+  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2021-04-12"/>
 
-  <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="147c2f5c4702ee9bd95a9bf7f6e7e4a2a730c382"/>
-
-  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2020-10-09-nxp"/>
-
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2021-03-10">
+  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2021-05-06">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2021-03-10"/>
-  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-03-10"/>
-
+  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2021-05-06"/>
+  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-05-06"/>
 </manifest>
