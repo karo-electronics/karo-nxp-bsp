@@ -25,14 +25,14 @@
   <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="810d6d842f103eb59f18b06426106462b15de7e2"/>
   <project name="meta-qt5" path="sources/meta-qt5" remote="QT5" revision="a00af3eae082b772469d9dd21b2371dd4d237684"/>
   <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="00f81fbdf7fba2a09ff83d14fc3b040e9ae63b42"/>
-  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2021-06-18"/>
+  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2021-08-06"/>
 
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2021-05-06">
+  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2021-08-06">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2021-07-19"/>
-  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-07-19"/>
+  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2021-08-06"/>
+  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2021-08-06"/>
 </manifest>
