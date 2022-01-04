@@ -15,16 +15,16 @@
   <default sync-j="2"/>
   
   <project name="meta-browser" path="sources/meta-browser" remote="OSSystems" revision="8be1d3a0ba0cf32e61144900597207af5698c10d"/>
-  <project name="meta-clang" path="sources/meta-clang" remote="clang" revision="7ef47d048267cf755c496a3962b34314f6f1f1e1"/>
-  <project name="meta-freescale" path="sources/meta-freescale" remote="community" revision="2027a8045384463b7c793381dd887b0591037e2f"/>
-  <project name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty" remote="community" revision="060967a7df43e8505568aa3d54fd8addcecab98d"/>
-  <project name="meta-freescale-distro" path="sources/meta-freescale-distro" remote="community" revision="916df6d24c0a33a3b1533bde70b6a2724ec77af4"/>
-  <project name="meta-imx" path="sources/meta-imx" remote="CAF" revision="refs/tags/rel_imx_5.10.52_2.1.0" upstream="hardknott-5.10.52-2.1.0"/>
-  <project name="meta-nxp-demo-experience" path="sources/meta-nxp-demo-experience" remote="imx-support" revision="71d85758f4189a065e69b10527e4014e998d0a80" upstream="imx_5.10.y" dest-branch="imx_5.10.y"/>
-  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="5a4b2ab29d38c02535f24d5308cc40615739f557"/>
-  <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="8db9e4f6ceae33d7a4f55453d31e69f9858af4eb"/>
-  <project name="meta-qt5" path="sources/meta-qt5" remote="QT5" revision="a00af3eae082b772469d9dd21b2371dd4d237684"/>
-  <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="00f81fbdf7fba2a09ff83d14fc3b040e9ae63b42"/>
+  <project name="meta-clang" path="sources/meta-clang" remote="clang" revision="b0d805060791006d651efd3d7ae3dd5add8f70fe" upstream="hardknott"/>
+  <project name="meta-freescale" path="sources/meta-freescale" remote="community" revision="469d6c958c76ea235b3d3c1527e797ce3a7392e3" upstream="hardknott"/>
+  <project name="meta-freescale-3rdparty" path="sources/meta-freescale-3rdparty" remote="community" revision="f8150f3b37cb83cba1f9e2378e57bb63e02d4610" upstream="hardknott"/>
+  <project name="meta-freescale-distro" path="sources/meta-freescale-distro" remote="community" revision="e6daa26ba1f748326546063d63a085ae671827d9" upstream="hardknott"/>
+  <project name="meta-imx" path="sources/meta-imx" remote="CAF" revision="refs/tags/rel_imx_5.10.72_2.2.0" upstream="hardknott-5.10.72-2.2.0"/>
+  <project name="meta-nxp-demo-experience" path="sources/meta-nxp-demo-experience" remote="imx-support" revision="9dcc11ea9f525cffedbb28895e0abb443e56c3e0" upstream="imx_5.10.y"/>
+  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="f44e1a2b575826e88b8cb2725e54a7c5d29cf94a" upstream="hardknott"/>
+  <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="8db9e4f6ceae33d7a4f55453d31e69f9858af4eb" upstream="hardknott"/>
+  <project name="meta-qt5" path="sources/meta-qt5" remote="QT5" revision="43f8f539d40070a70fe89136db89bf5bb1dfe7ed" upstream="hardknott"/>
+  <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="93bf122d77e77aac1a917865538df84f148a8fcc" upstream="gatesgarth"/>
   <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2021-10-05"/>
 
   <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2021-08-06">
