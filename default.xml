@@ -10,7 +10,7 @@
   <remote name="oe" fetch="https://github.com/openembedded"/>
   <remote name="python2" fetch="https://git.openembedded.org"/>
   <remote name="yocto" fetch="https://git.yoctoproject.org/git"/>
-  <remote name="karo" fetch="git://github.com/karo-electronics"/>
+  <remote name="karo" fetch="https://github.com/karo-electronics"/>
   
   <default sync-j="2"/>
   
