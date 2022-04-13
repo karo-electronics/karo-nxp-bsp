@@ -3,7 +3,6 @@
   <remote name="CAF" fetch="https://source.codeaurora.org/external/imx"/>
   <remote name="OSSystems" fetch="https://github.com/OSSystems"/>
   <remote name="QT5" fetch="https://github.com/meta-qt5"/>
-  <remote name="Timesys" fetch="https://github.com/TimesysGit"/>
   <remote name="clang" fetch="https://github.com/kraj"/>
   <remote name="community" fetch="https://github.com/Freescale"/>
   <remote name="imx-support" fetch="https://source.codeaurora.org/external/imxsupport"/>
@@ -23,15 +22,14 @@
   <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="f44e1a2b575826e88b8cb2725e54a7c5d29cf94a" upstream="hardknott"/>
   <project name="meta-python2" path="sources/meta-python2" remote="python2" revision="8db9e4f6ceae33d7a4f55453d31e69f9858af4eb" upstream="hardknott"/>
   <project name="meta-qt5" path="sources/meta-qt5" remote="QT5" revision="43f8f539d40070a70fe89136db89bf5bb1dfe7ed" upstream="hardknott"/>
-  <project name="meta-timesys" path="sources/meta-timesys" remote="Timesys" revision="93bf122d77e77aac1a917865538df84f148a8fcc" upstream="gatesgarth"/>
-  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2021-10-05"/>
+  <project name="poky" path="sources/poky" remote="karo" revision="refs/tags/KARO-2022-03-11"/>
 
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2021-08-06">
+  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2022-04-13">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2022-03-08"/>
-  <project name="meta-karo-nxp-distro" path="sources/meta-karo-nxp-distro" remote="karo" revision="refs/tags/KARO-2022-01-17"/>
+  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2022-04-13"/>
+  <project name="meta-karo-distro" path="sources/meta-karo-distro" remote="karo" revision="refs/tags/KARO-2022-03-11"/>
 </manifest>
