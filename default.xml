@@ -19,13 +19,14 @@
   <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="5357c7a40eaf8d1bcf7ff58edbba8e9527e40c7d" upstream="kirkstone"/>
   <project name="meta-qt6" path="sources/meta-qt6" remote="QT6" revision="b2894aad5c1aaa85f2f5c7b94391b7c51c39e555" upstream="6.3"/>
   <project name="meta-virtualization" path="sources/meta-virtualization" remote="yocto" revision="973c8d0964c6f40338857efe5b8009b2f647d485"/>
+  <project name="poky" path="sources/poky" remote="yocto" revision="27de52e402ae000dfa502d52908cd6e6aef923ec" upstream="kirkstone"/>
   
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2022-04-13">
+  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2022-08-12">
     <linkfile dest="README" src="README"/>
     <linkfile src="setup-environment" dest="setup-environment"/>
     <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2022-04-13"/>
-  <project name="meta-karo-distro" path="sources/meta-karo-distro" remote="karo" revision="refs/tags/KARO-2022-07-14"/>
+  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2022-08-12"/>
+  <project name="meta-karo-distro" path="sources/meta-karo-distro" remote="karo" revision="refs/tags/KARO-2022-08-12"/>
 </manifest>
