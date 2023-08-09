@@ -1,32 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote fetch="https://github.com/nxp-imx" name="nxp-imx"/>
-  <remote fetch="https://github.com/OSSystems" name="OSSystems"/>
-  <remote fetch="https://code.qt.io/yocto"  name="QT6"/>
-  <remote fetch="https://github.com/kraj" name="clang"/>
-  <remote fetch="https://github.com/Freescale" name="community"/>
-  <remote fetch="https://github.com/openembedded" name="oe"/>
-  <remote fetch="https://git.yoctoproject.org/git" name="yocto"/>
-  <remote fetch="https://github.com/karo-electronics" name="karo"/>
-  <remote fetch="https://github.com/nxp-imx-support" name="imx-support"/>
+  <remote name="yocto"       fetch="https://git.yoctoproject.org"/>
+  <remote name="oe"          fetch="https://github.com/openembedded"/>
+  <remote name="community"   fetch="https://github.com/Freescale"/>
+  <remote name="ossystems"   fetch="https://github.com/OSSystems"/>
+  <remote name="qt"          fetch="https://code.qt.io/yocto"/>
+  <remote name="nxp-imx"     fetch="https://github.com/nxp-imx"/>
+  <remote name="imx-support" fetch="https://github.com/nxp-imx-support"/>
+  <remote name="karo"        fetch="https://github.com/karo-electronics"/>
 
-  <project name="meta-browser" path="sources/meta-browser" remote="OSSystems" revision="e232c2e21b96dc092d9af8bea4b3a528e7a46dd6"/>
-  <project name="meta-clang" path="sources/meta-clang" remote="clang" revision="c728c3f9168c8a4ed05163a51dd48ca1ad8ac21d" upstream="kirkstone"/>
-  <project name="meta-freescale" path="sources/meta-freescale" remote="community" revision="c82d4634e7aba8bc0de73ce1dfc997b630051571" upstream="kirkstone"/>
-  <project name="meta-freescale-distro" path="sources/meta-freescale-distro" remote="community" revision="d5bbb487b2816dfc74984a78b67f7361ce404253" upstream="kirkstone"/>
-  <project name="meta-imx" path="sources/meta-imx" remote="nxp-imx" revision="refs/tags/rel_imx_5.15.71_2.2.0" upstream="kirkstone-5.15.71-2.2.0"/>
-  <project name="meta-nxp-demo-experience" path="sources/meta-nxp-demo-experience" remote="imx-support" revision="52eaf8bf42f8eda2917a1c8c046003c8c2c8f629" upstream="kirkstone"/>
-  <project name="meta-openembedded" path="sources/meta-openembedded" remote="oe" revision="744a4b6eda88b9a9ca1cf0df6e18be384d9054e3" upstream="kirkstone"/>
-  <project name="meta-qt6" path="sources/meta-qt6" remote="QT6" revision="ed785a25d12e365d1054700d4fc94a053176eb14" upstream="6.3"/>
-  <project name="meta-virtualization" path="sources/meta-virtualization" remote="yocto" revision="9482648daf0bb42ff3475e7892542cf99f3b8d48"/>
-  <project name="poky" path="sources/poky" remote="yocto" revision="24a3f7b3648185e33133f5d96b184a6cb6524f3d" upstream="kirkstone"/>
-  
-  <project name="karo-nxp-base" path="sources/base" remote="karo" revision="refs/tags/KARO-2023-06-27">
-    <linkfile dest="README" src="README"/>
-    <linkfile src="setup-environment" dest="setup-environment"/>
-    <linkfile src="karo-setup-release.sh" dest="karo-setup-release.sh"/>
+  <project name="meta-arm"
+    path="sources/meta-arm"
+    remote="yocto"
+ 	  revision="025124814e8676e46d42ec5b07220283f1bdbcd0"
+    upstream="langdale"
+  />
+
+  <project name="meta-openembedded"
+    path="sources/meta-openembedded"
+    remote="oe"
+    revision="c354f92778c1d4bcd3680af7e0fb0d1414de2344"
+    upstream="langdale"
+  />
+
+  <project name="meta-freescale"
+    path="sources/meta-freescale"
+    remote="community"
+    revision="09c47379218167dda9fb0098129909a667fea2ec"
+    upstream="master"
+  />
+
+  <project name="meta-freescale-distro"
+    path="sources/meta-freescale-distro"
+    remote="community"
+    revision="1069c2f210b18cd707a4d8a82140a684a42a4ff6"
+    upstream="master"
+  />
+
+  <project name="meta-browser"
+    path="sources/meta-browser"
+    remote="ossystems"
+    revision="e232c2e21b96dc092d9af8bea4b3a528e7a46dd6"
+  />
+
+  <project name="meta-qt6"
+    path="sources/meta-qt6"
+    remote="qt"
+    revision="4f7d02004cd78f0fca77489deb7487bfb301ea36"
+    upstream="6.4"
+  />
+
+  <project name="meta-imx"
+    path="sources/meta-imx"
+    remote="nxp-imx"
+    revision="refs/tags/rel_imx_6.1.1_1.0.0"
+    upstream="langdale-6.1.1-1.0.0"
+    >
+     <linkfile src="tools/imx-setup-release.sh" dest="imx-setup-release.sh"/>
+     <linkfile src="README" dest="README-IMXBSP"/>
   </project>
 
-  <project name="meta-karo-nxp" path="sources/meta-karo-nxp" remote="karo" revision="refs/tags/KARO-2023-05-25"/>
-  <project name="meta-karo-distro" path="sources/meta-karo-distro" remote="karo" revision="refs/tags/KARO-2023-05-25"/>
+  <project name="meta-nxp-demo-experience"
+    path="sources/meta-nxp-demo-experience"
+    remote="imx-support"
+    revision="c057a681cf11923b22e16b9cdb0ad2b9187eced2"
+    upstream="langdale-6.1.1-1.0.0"
+  />
+
+  <project name="poky"
+    path="sources/poky"
+    remote="karo" 		
+    revision="refs/tags/KARO-2023-08-09"
+    upstream="langdale"
+  />
+
+  <project name="karo-nxp-base"
+    path="sources/base"
+    remote="karo"
+    revision="refs/tags/KARO-2023-08-09">
+    <linkfile dest="README" src="README"/>
+    <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
+    <linkfile dest="setup-environment" src="setup-environment"/>
+  </project>
+
+  <project name="meta-karo-nxp"
+    path="sources/meta-karo-nxp"
+    remote="karo"
+    revision="refs/tags/KARO-2023-08-09"
+  />
+
+  <project name="meta-karo-distro"
+    path="sources/meta-karo-distro"
+    remote="karo"
+    revision="refs/tags/KARO-2023-08-09"
+  />
 </manifest>
