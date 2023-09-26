@@ -12,7 +12,7 @@
   <project name="meta-arm"
     path="sources/meta-arm"
     remote="yocto"
- 	  revision="025124814e8676e46d42ec5b07220283f1bdbcd0"
+    revision="025124814e8676e46d42ec5b07220283f1bdbcd0"
     upstream="langdale"
   />
 
@@ -86,12 +86,12 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2023-08-09"
+    revision="refs/tags/KARO-2023-09-26"
   />
 
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2023-08-09"
+    revision="refs/tags/KARO-2023-09-26"
   />
 </manifest>
