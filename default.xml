@@ -86,12 +86,12 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2023-09-26"
+    revision="refs/tags/KARO-2023-09-28"
   />
 
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2023-09-26"
+    revision="refs/tags/KARO-2023-09-28"
   />
 </manifest>
