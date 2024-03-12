@@ -73,15 +73,6 @@
     revision="refs/tags/KARO-2024-03-12"
   />
 
-  <project name="karo-nxp-base"
-    path="sources/base"
-    remote="karo"
-    revision="refs/tags/KARO-2023-11-23">
-    <linkfile dest="README" src="README"/>
-    <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
-    <linkfile dest="setup-environment" src="setup-environment"/>
-  </project>
-
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
@@ -91,6 +82,16 @@
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2023-11-23"
+    revision="refs/tags/KARO-2024-03-12"
   />
+
+  <project name="karo-nxp-base"
+    path="sources/base"
+    remote="karo"
+    revision="refs/tags/KARO-2023-11-23">
+    <linkfile dest="README" src="README"/>
+    <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
+    <linkfile dest="setup-environment" src="setup-environment"/>
+  </project>
+
 </manifest>
