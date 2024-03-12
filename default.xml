@@ -70,7 +70,7 @@
   <project name="poky"
     path="sources/poky"
     remote="karo" 		
-    revision="refs/tags/KARO-2023-11-23"
+    revision="refs/tags/KARO-2024-03-12"
   />
 
   <project name="karo-nxp-base"
@@ -85,7 +85,7 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2023-11-23"
+    revision="refs/tags/KARO-2024-03-12"
   />
 
   <project name="meta-karo-distro"
