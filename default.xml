@@ -76,7 +76,7 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2024-05-13"
+    revision="refs/tags/KARO-2024-08-02"
   />
 
   <project name="meta-karo-distro"
