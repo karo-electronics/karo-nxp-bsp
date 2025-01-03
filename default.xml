@@ -12,49 +12,49 @@
   <project name="meta-arm"
     path="sources/meta-arm"
     remote="yocto"
-    revision="0e043288fd0b17fbf31cf00ae33045107a991144"
-    upstream="master"
+    revision="1b85bbb4cab9658da3cd926c62038b8559c5c64e"
+    upstream="scarthgap"
   />
 
   <project name="meta-openembedded"
     path="sources/meta-openembedded"
     remote="oe"
-    revision="75cf318cef3b4ee81fad2782cf063ecd69ba8842"
-    upstream="mickledore"
+    revision="80e01188fa822d87d301ee71973c462d7a865493"
+    upstream="scarthgap"
   />
 
   <project name="meta-freescale"
     path="sources/meta-freescale"
     remote="community"
-    revision="9b00d40b787c2b7105ce209f5635cc1a0cab81ca"
-    upstream="master"
+    revision="0f8091c63dd8805610c09b08409bc58492a3b16f"
+    upstream="scarthgap"
   />
 
   <project name="meta-freescale-distro"
     path="sources/meta-freescale-distro"
     remote="community"
-    revision="b09c18a3f649f0cf1b40432bb39e76ba16fe94e2"
-    upstream="master"
+    revision="b9d6a5d9931922558046d230c1f5f4ef6ee72345"
+    upstream="scarthgap"
   />
 
   <project name="meta-browser"
     path="sources/meta-browser"
     remote="ossystems"
-    revision="e232c2e21b96dc092d9af8bea4b3a528e7a46dd6"
+    revision="dc31889c0899971def535dc1c040edf18bc16691"
   />
 
   <project name="meta-qt6"
     path="sources/meta-qt6"
     remote="qt"
-    revision="1406d0a85525a71fe5d7892d7f915404290a78ad"
-    upstream="6.5.0"
+    revision="dc13e1bfda4a4757a08c2d6673bc4bac012c4a80"
+    upstream="6.7.0"
   />
 
   <project name="meta-imx"
     path="sources/meta-imx"
     remote="nxp-imx"
-    revision="refs/tags/rel_imx_6.1.36_2.1.0"
-    upstream="mickledore-6.1.36-2.1.0"
+    revision="refs/tags/rel_imx_6.6.36_2.1.0"
+    upstream="scarthgap-6.6.36-2.1.0"
     >
      <linkfile src="tools/imx-setup-release.sh" dest="imx-setup-release.sh"/>
      <linkfile src="README" dest="README-IMXBSP"/>
@@ -63,34 +63,35 @@
   <project name="meta-nxp-demo-experience"
     path="sources/meta-nxp-demo-experience"
     remote="imx-support"
-    revision="7f34a32c7877e55e87b6a99e90da4128ed632bf2"
-    upstream="mickledore-6.1.36-2.1.0"
+    revision="8fd7154c05b716e9635279047f65785399432d88"
+    upstream="scarthgap-6.6.36-2.1.0"
   />
 
   <project name="poky"
     path="sources/poky"
     remote="karo" 		
-    revision="refs/tags/KARO-2024-03-12"
+    revision="refs/tags/KARO-2024-12-23"
   />
-
-  <project name="karo-nxp-base"
-    path="sources/base"
-    remote="karo"
-    revision="refs/tags/KARO-2023-11-23">
-    <linkfile dest="README" src="README"/>
-    <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
-    <linkfile dest="setup-environment" src="setup-environment"/>
-  </project>
 
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2024-03-12"
+    revision="refs/tags/KARO-2024-01-03"
   />
 
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2023-11-23"
+    revision="refs/tags/KARO-2024-01-03"
   />
+
+  <project name="karo-nxp-base"
+    path="sources/base"
+    remote="karo"
+    revision="refs/tags/KARO-2024-12-23">
+    <linkfile dest="README" src="README"/>
+    <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
+    <linkfile dest="setup-environment" src="setup-environment"/>
+  </project>
+
 </manifest>
