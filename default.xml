@@ -84,7 +84,7 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2025-01-20"
+    revision="refs/tags/KARO-2025-01-29"
     upstream="scarthgap"
   />
 
