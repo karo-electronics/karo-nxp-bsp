@@ -74,7 +74,7 @@
   <project name="karo-nxp-base"
     path="sources/base"
     remote="karo"
-    revision="refs/tags/KARO-2025-01-09"
+    revision="refs/tags/KARO-2025-03-13"
     >
     <linkfile dest="README" src="README"/>
     <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
@@ -84,14 +84,14 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2025-01-29"
+    revision="refs/tags/KARO-2025-03-13"
     upstream="scarthgap"
   />
 
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2025-01-21"
+    revision="refs/tags/KARO-2025-03-14"
     upstream="scarthgap"
   />
 </manifest>
