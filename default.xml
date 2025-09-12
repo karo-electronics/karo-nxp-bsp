@@ -8,32 +8,33 @@
   <remote name="nxp-imx"     fetch="https://github.com/nxp-imx"/>
   <remote name="imx-support" fetch="https://github.com/nxp-imx-support"/>
   <remote name="karo"        fetch="https://github.com/karo-electronics"/>
+  <remote name="rauc"        fetch="https://github.com/rauc"/>
 
   <project name="meta-arm"
     path="sources/meta-arm"
     remote="yocto"
-    revision="a8fe9d22eaefc294f91096c6a32663e2f4ab3b10"
+    revision="950a4afce46a359def2958bd9ae33fc08ff9bb0d"
     upstream="scarthgap"
   />
 
   <project name="meta-openembedded"
     path="sources/meta-openembedded"
     remote="oe"
-    revision="3c293e14492f01e22a64004e2330fb620c27578a"
+    revision="e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943"
     upstream="scarthgap"
   />
 
   <project name="meta-imx"
     path="sources/meta-imx"
     remote="nxp-imx"
-    revision="219f6d04a4c339eb6f2dc626f944bbdf9a716ff5"
-    upstream="scarthgap-6.6.52-2.2.0"
+    revision="89c4d98c236ac1a2fbfcc92e5adf6571e41bd2da"
+    upstream="scarthgap-6.6.52-2.2.1"
   />
 
   <project name="meta-freescale"
     path="sources/meta-freescale"
     remote="community"
-    revision="be9267fca85959c79b19ab65e48c8f3d7faf2b40"
+    revision="0627128b341cfb2bef7a0832ce8cac0ce1127f13"
     upstream="scarthgap"
   />
 
@@ -60,21 +61,28 @@
   <project name="meta-qt6"
     path="sources/meta-qt6"
     remote="qt"
-    revision="ce16ade17bd9d689e62a5d21344ddb1c67b447e8"
-    upstream="6.8"
+    revision="586a6cb5aec755803a3be3cec359baafe89d6432"
+    upstream = "6.8.1"
+    />
+
+  <project name="meta-rauc"
+    remote="rauc"
+    path="sources/meta-rauc"
+    revision="a0f4a8b9986954239850b9d4256c003c91e6b931"
+    upstream="scarthgap"
   />
 
   <project name="poky"
     path="sources/poky"
     remote="karo" 		
-    revision="f9d47c81be4be841743784d7ca7442063687921c"
-    upstream="scarthgap"
+    revision="4dc6764e235d5e56a80cb725eb2dafcbd853e962"
+    upstream="scarthgap-update"
   />
 
   <project name="karo-nxp-base"
     path="sources/base"
     remote="karo"
-    revision="refs/tags/KARO-2025-03-13"
+    revision="refs/tags/KARO-2025-09-12"
     >
     <linkfile dest="README" src="README"/>
     <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
@@ -84,14 +92,14 @@
   <project name="meta-karo-nxp"
     path="sources/meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2025-03-13"
+    revision="refs/tags/KARO-2025-09-12"
     upstream="scarthgap"
   />
 
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2025-03-14"
+    revision="refs/tags/KARO-2025-09-12"
     upstream="scarthgap"
   />
 </manifest>
