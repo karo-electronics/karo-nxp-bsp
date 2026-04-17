@@ -62,7 +62,7 @@
     path="sources/meta-qt6"
     remote="qt"
     revision="586a6cb5aec755803a3be3cec359baafe89d6432"
-    upstream = "6.8"
+    upstream = "6.8.1"
   />
 
   <project name="meta-rauc"
@@ -75,14 +75,15 @@
   <project name="poky"
     path="sources/poky"
     remote="karo" 		
-    revision="4dc6764e235d5e56a80cb725eb2dafcbd853e962"
+    revision="refs/tags/KARO-2025-10-30"
     upstream="scarthgap-update"
   />
 
   <project name="karo-nxp-base"
     path="sources/base"
     remote="karo"
-    revision="refs/tags/KARO-2025-11-12"
+    revision="refs/tags/KARO-2026-04-17"
+    upstream="scarthgap"
     >
     <linkfile dest="README" src="README"/>
     <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
@@ -99,7 +100,7 @@
   <project name="meta-karo-distro"
     path="sources/meta-karo-distro"
     remote="karo"
-    revision="refs/tags/KARO-2025-11-12"
+    revision="refs/tags/KARO-2026-04-17"
     upstream="scarthgap"
   />
 </manifest>
