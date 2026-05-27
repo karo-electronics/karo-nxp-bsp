@@ -1,0 +1,134 @@
+@Library('yocto-lib') _
+
+def machineOptions = getMachines('stm') + getMachines('renesas')
+
+properties([
+    parameters([
+        [
+            $class: 'ChoiceParameter',
+            name: 'MACHINES',
+            description: 'Select one or more machines',
+            choiceType: 'PT_CHECKBOX',
+            filterable: true,
+            script: [
+                $class: 'GroovyScript',
+                script: [
+                    sandbox: true,
+                    script: "return ${machineOptions.inspect()}"
+                ]
+            ]
+        ],
+        choice(
+            name: 'DISTRO',
+            choices: ['all'] + getDistros(),
+            description: 'Select distro or all'
+        ),
+        booleanParam(
+            name: 'RUN_TESTS',
+            defaultValue: true,
+            description: 'Run labgrid tests'
+        ),
+        booleanParam(
+            name: 'BUILD_FEATURES',
+            defaultValue: false,
+            description: 'Build distro features'
+        ),
+        booleanParam(
+            name: 'PUBLISH_RELEASE',
+            defaultValue: false,
+            description: 'Create and publish release'
+        )
+    ])
+])
+
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '20'))
+        disableConcurrentBuilds()
+        skipDefaultCheckout(true)
+        skipStagesAfterUnstable()
+    }
+
+    environment {
+        GIT_URL = "${scm.userRemoteConfigs[0].url}"
+        DATE_BUILD_START = "${new Date(currentBuild.startTimeInMillis).format('yyyy-MM-dd')}"
+    }
+
+    stages {
+        stage('Prepare') {
+            steps {
+                deleteDir()
+            }
+        }
+
+        stage('Checkout') {            
+            steps {
+                checkoutYocto(
+                    env.GIT_URL,
+                    env.BRANCH_NAME
+                )
+            }
+        }
+
+        stage('Build Combinations') {
+            matrix {
+                axes {
+                    axis {
+                        name 'MACHINE'
+                        values 'qsmp-1351', 'qsmp-1530', 'qsmp-1570', 'qsmp-2350',
+                               'qsmp-2550', 'txmp-1530', 'txmp-1570', 'txmp-1571',
+                               'txmp-2550', 'txmp-2570', 'qsrz-g2l0', 'qsrz-g2l1',
+                               'txrz-g2l0', 'txrz-g2l1', 'txrz-g2l2'
+                    }
+                }
+
+                when {
+                    expression {
+                        def selected = (params.MACHINES ?: '')
+                            .split(',')
+                            .collect { it.trim() }
+                            .findAll { it }
+
+                        return selected.isEmpty() || selected.contains(env.MACHINE)
+                    }
+                }
+
+                stages {
+                    stage('Build') {
+                        steps {
+                            build job: "yocto-build-machine",
+                                parameters: [
+                                    string(name: 'WORKSPACE', value: env.WORKSPACE),
+                                    string(name: 'MACHINE', value: env.MACHINE),
+                                    string(name: 'DISTRO', value: env.DISTRO),
+                                    booleanParam(name: 'RUN_TESTS', value: params.RUN_TESTS),
+                                    booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES)
+                                ],
+                                wait: true,
+                                propagate: true
+                        }
+                    }
+                    stage('Publish') {
+                        when {
+                            allOf {
+                                expression { return params.PUBLISH_RELEASE }
+                                expression { return params.RUN_TESTS }
+                                expression { return params.BUILD_FEATURES }
+                                expression { return env.DISTRO == 'all' }
+                                expression { return env.GIT_URL.contains('github') }
+                                expression { return env.BRANCH_NAME == getYoctoCodename() }
+                            }
+                        }
+
+                        steps {
+                            createRelease(env.MACHINE, env.DATE_BUILD_START)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
