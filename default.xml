@@ -82,12 +82,14 @@
   <project name="karo-nxp-base"
     path="sources/base"
     remote="karo"
-    revision="refs/tags/KARO-2026-04-17"
+    revision="refs/tags/KARO-2026-05-28"
     upstream="scarthgap"
     >
     <linkfile dest="README" src="README"/>
     <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
     <linkfile dest="setup-environment" src="setup-environment"/>
+    <copyfile src="devcontainer/devcontainer.json" dest=".devcontainer/devcontainer.json"/>
+    <copyfile src="devcontainer/Dockerfile" dest=".devcontainer/Dockerfile"/>
   </project>
 
   <project name="meta-karo-nxp"
