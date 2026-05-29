@@ -1,6 +1,6 @@
 @Library('yocto-lib') _
 
-def machineOptions = getMachines('stm') + getMachines('renesas')
+def machineOptions = getMachines('nxp')
 
 properties([
     parameters([
@@ -78,10 +78,9 @@ pipeline {
                 axes {
                     axis {
                         name 'MACHINE'
-                        values 'qsmp-1351', 'qsmp-1530', 'qsmp-1570', 'qsmp-2350',
-                               'qsmp-2550', 'txmp-1530', 'txmp-1570', 'txmp-1571',
-                               'txmp-2550', 'txmp-2570', 'qsrz-g2l0', 'qsrz-g2l1',
-                               'txrz-g2l0', 'txrz-g2l1', 'txrz-g2l2'
+                        values 'qs8m-mq00', 'qs8m-nd00', 'qs91-3110', 'qs93-5210',
+                               'qsxm-mm60', 'qsxp-ml81', 'tx8m-1610', 'tx8m-1620',
+                               'tx8m-nd00', 'tx8p-ml81', 'tx91-3110', 'tx93-5210'
                     }
                 }
 
