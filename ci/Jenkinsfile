@@ -1,13 +1,14 @@
 @Library('yocto-lib') _
 
 def machineOptions = getMachines('nxp')
+def distroOptions = getDistros()
 
 properties([
     parameters([
         [
             $class: 'ChoiceParameter',
             name: 'MACHINES',
-            description: 'Select one or more machines',
+            description: 'Select one or more machines. Or nothing for all.',
             choiceType: 'PT_CHECKBOX',
             filterable: true,
             script: [
@@ -18,15 +19,24 @@ properties([
                 ]
             ]
         ],
+        [
+            $class: 'ChoiceParameter',
+            name: 'DISTROS',
+            description: 'Select one or more distros. Or nothing for all.',
+            choiceType: 'PT_CHECKBOX',
+            filterable: true,
+            script: [
+                $class: 'GroovyScript',
+                script: [
+                    sandbox: true,
+                    script: "return ${distroOptions.inspect()}"
+                ]
+            ]
+        ],
         choice(
-            name: 'DISTRO',
-            choices: ['all'] + getDistros(),
-            description: 'Select distro or all'
-        ),
-        booleanParam(
-            name: 'RUN_TESTS',
-            defaultValue: true,
-            description: 'Run labgrid tests'
+            name: 'MODE',
+            choices: ['BUILD', 'BUILD + TEST', 'TEST'],
+            description: 'Choose mode'
         ),
         booleanParam(
             name: 'BUILD_FEATURES',
@@ -58,14 +68,14 @@ pipeline {
     }
 
     stages {
-        stage('Prepare') {
+        stage('Checkout') {      
+            when {
+                expression { return params.MODE.contains('BUILD') }
+            }
+
             steps {
                 deleteDir()
-            }
-        }
 
-        stage('Checkout') {            
-            steps {
                 checkoutYocto(
                     env.GIT_URL,
                     env.BRANCH_NAME
@@ -102,8 +112,8 @@ pipeline {
                                 parameters: [
                                     string(name: 'WORKSPACE', value: env.WORKSPACE),
                                     string(name: 'MACHINE', value: env.MACHINE),
-                                    string(name: 'DISTRO', value: env.DISTRO),
-                                    booleanParam(name: 'RUN_TESTS', value: params.RUN_TESTS),
+                                    string(name: 'DISTROS', value: env.DISTROS),
+                                    string(name: 'MODE', value: params.MODE),
                                     booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES)
                                 ],
                                 wait: true,
@@ -114,9 +124,10 @@ pipeline {
                         when {
                             allOf {
                                 expression { return params.PUBLISH_RELEASE }
-                                expression { return params.RUN_TESTS }
+                                expression { return params.MODE.contains('BUILD') }
+                                expression { return params.MODE.contains('TEST') }
                                 expression { return params.BUILD_FEATURES }
-                                expression { return env.DISTRO == 'all' }
+                                expression { return params.DISTROS.isEmpty() }
                                 expression { return env.GIT_URL.contains('github') }
                                 expression { return env.BRANCH_NAME == getYoctoCodename() }
                             }
