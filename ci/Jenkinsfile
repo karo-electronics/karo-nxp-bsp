@@ -1,6 +1,7 @@
-@Library('yocto-lib') _
+@Library('yocto-lib@2026.06.1') _
 
-def machineOptions = getMachines('nxp')
+def machineFamilies = getFamilies('nxp')
+def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
 def distroOptions = getDistros()
 
 properties([
@@ -44,7 +45,7 @@ properties([
             description: 'Build distro features'
         ),
         booleanParam(
-            name: 'PUBLISH_RELEASE',
+            name: 'CREATE_RELEASE',
             defaultValue: false,
             description: 'Create and publish release'
         )
@@ -64,7 +65,7 @@ pipeline {
 
     environment {
         GIT_URL = "${scm.userRemoteConfigs[0].url}"
-        DATE_BUILD_START = "${new Date(currentBuild.startTimeInMillis).format('yyyy-MM-dd')}"
+        BRANCH_NAME =  "${env.TAG_NAME ? 'refs/tags/' + env.TAG_NAME : env.BRANCH_NAME}"
     }
 
     stages {
@@ -120,21 +121,45 @@ pipeline {
                                 propagate: true
                         }
                     }
-                    stage('Publish') {
-                        when {
-                            allOf {
-                                expression { return params.PUBLISH_RELEASE }
-                                expression { return params.MODE.contains('BUILD') }
-                                expression { return params.MODE.contains('TEST') }
-                                expression { return params.BUILD_FEATURES }
-                                expression { return params.DISTROS.isEmpty() }
-                                expression { return env.GIT_URL.contains('github') }
-                                expression { return env.BRANCH_NAME == getYoctoCodename() }
-                            }
-                        }
+                }
+            }
+        }
 
+        stage('Create Release') {
+            when {
+                allOf {
+                    expression { return params.CREATE_RELEASE }
+                    expression { return params.MODE.contains('BUILD') }
+                    expression { return params.MODE.contains('TEST') }
+                    expression { return params.DISTROS.isEmpty() }
+                    expression { return env.GIT_URL.contains('github') }
+                    expression { return env.TAG_NAME ==~ /^KARO-\d{4}-\d{2}-\d{2}$/ }
+                }
+            }
+
+            matrix {
+                axes {
+                    axis {
+                        name 'FAMILY'
+                        values 'qs8m', 'qsxm', 'qsxp', 'qs91', 'qs93', 'tx8m', 'tx8p', 'tx91', 'tx93'
+                    }
+                }
+
+                when {
+                    expression {
+                        def selected = (params.MACHINES ?: '')
+                            .split(',')
+                            .collect { it.trim() }
+                            .findAll { it }
+
+                        return selected.isEmpty() || selected.containsAll(getMachines(env.FAMILY))
+                    }
+                }
+
+                stages {
+                    stage('Publish') {
                         steps {
-                            createRelease(env.MACHINE, env.DATE_BUILD_START)
+                            createRelease(env.FAMILY, env.TAG_NAME)
                         }
                     }
                 }
