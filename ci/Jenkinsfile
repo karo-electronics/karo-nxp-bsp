@@ -130,8 +130,10 @@ pipeline {
                 allOf {
                     expression { return params.CREATE_RELEASE }
                     expression { return params.MODE.contains('BUILD') }
-                    expression { return params.MODE.contains('TEST') }
-                    expression { return params.DISTROS.isEmpty() }
+                    expression { return params.DISTROS.isEmpty() || (
+                        params.DISTROS.contains('karo-minimal') &&
+                        params.DISTROS.contains('karo-wayland')
+                    ) }
                     expression { return env.GIT_URL.contains('github') }
                     expression { return env.TAG_NAME ==~ /^KARO-\d{4}-\d{2}-\d{2}$/ }
                 }
