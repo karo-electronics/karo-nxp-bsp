@@ -1,4 +1,4 @@
-@Library('yocto-lib@2026.06.1') _
+@Library('yocto-lib@1.1.0') _
 
 def machineFamilies = getFamilies('nxp')
 def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
@@ -57,7 +57,7 @@ pipeline {
 
     options {
         timestamps()
-        buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '20'))
+        buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
         skipDefaultCheckout(true)
         skipStagesAfterUnstable()
@@ -81,6 +81,8 @@ pipeline {
                     env.GIT_URL,
                     env.BRANCH_NAME
                 )
+
+                checkoutTestGrid('1.0.0')
             }
         }
 
@@ -89,9 +91,18 @@ pipeline {
                 axes {
                     axis {
                         name 'MACHINE'
-                        values 'qs8m-mq00', 'qs8m-nd00', 'qs91-3110', 'qs93-5210',
-                               'qsxm-mm60', 'qsxp-ml81', 'tx8m-1610', 'tx8m-1620',
-                               'tx8m-nd00', 'tx8p-ml81', 'tx91-3110', 'tx93-5210'
+                        values  'qs8m-mq00',
+                                'qs8m-nd00',
+                                'qs91-3110',
+                                'qs93-5210',
+                                'qsxm-mm60',
+                                'qsxp-ml81',
+                                'tx8m-1610',
+                                'tx8m-1620',
+                                'tx8m-nd00',
+                                'tx8p-ml81',
+                                'tx91-3110',
+                                'tx93-5210'
                     }
                 }
 
@@ -109,7 +120,7 @@ pipeline {
                 stages {
                     stage('Build') {
                         steps {
-                            build job: "yocto-build-machine",
+                            build job: "karo-bsp/yocto-build/1.1.0",
                                 parameters: [
                                     string(name: 'WORKSPACE', value: env.WORKSPACE),
                                     string(name: 'MACHINE', value: env.MACHINE),
@@ -143,7 +154,15 @@ pipeline {
                 axes {
                     axis {
                         name 'FAMILY'
-                        values 'qs8m', 'qsxm', 'qsxp', 'qs91', 'qs93', 'tx8m', 'tx8p', 'tx91', 'tx93'
+                        values  'qs8m',
+                                'qsxm',
+                                'qsxp',
+                                'qs91',
+                                'qs93',
+                                'tx8m',
+                                'tx8p',
+                                'tx91', 
+                                'tx93'
                     }
                 }
 
