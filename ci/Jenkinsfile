@@ -1,8 +1,8 @@
-@Library('yocto-lib@1.1.0') _
+@Library('yocto-lib@2.0') _
 
 def machineFamilies = getFamilies('nxp')
 def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
-def distroOptions = getDistros()
+def imageOptions = getImages()
 
 properties([
     parameters([
@@ -22,15 +22,15 @@ properties([
         ],
         [
             $class: 'ChoiceParameter',
-            name: 'DISTROS',
-            description: 'Select one or more distros. Or nothing for all.',
+            name: 'IMAGES',
+            description: 'Select one or more images. Or nothing for all.',
             choiceType: 'PT_CHECKBOX',
             filterable: true,
             script: [
                 $class: 'GroovyScript',
                 script: [
                     sandbox: true,
-                    script: "return ${distroOptions.inspect()}"
+                    script: "return ${imageOptions.inspect()}"
                 ]
             ]
         ],
@@ -69,6 +69,16 @@ pipeline {
     }
 
     stages {
+        stage('Validate Release') {
+            when {
+                expression { return params.CREATE_RELEASE }
+            }
+
+            steps {
+                checkIfReleasable(params.MODE, env.GIT_URL, env.TAG_NAME)
+            }
+        }
+
         stage('Checkout') {      
             when {
                 expression { return params.MODE.contains('BUILD') }
@@ -82,7 +92,7 @@ pipeline {
                     env.BRANCH_NAME
                 )
 
-                checkoutTestGrid('1.0.0')
+                checkoutTestGrid('1.0')
             }
         }
 
@@ -120,11 +130,11 @@ pipeline {
                 stages {
                     stage('Build') {
                         steps {
-                            build job: "karo-bsp/yocto-build/1.1.0",
+                            build job: "karo-bsp/yocto-build/2.0",
                                 parameters: [
                                     string(name: 'WORKSPACE', value: env.WORKSPACE),
                                     string(name: 'MACHINE', value: env.MACHINE),
-                                    string(name: 'DISTROS', value: env.DISTROS),
+                                    string(name: 'IMAGES', value: env.IMAGES),
                                     string(name: 'MODE', value: params.MODE),
                                     booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES)
                                 ],
@@ -138,16 +148,7 @@ pipeline {
 
         stage('Create Release') {
             when {
-                allOf {
-                    expression { return params.CREATE_RELEASE }
-                    expression { return params.MODE.contains('BUILD') }
-                    expression { return params.DISTROS.isEmpty() || (
-                        params.DISTROS.contains('karo-minimal') &&
-                        params.DISTROS.contains('karo-wayland')
-                    ) }
-                    expression { return env.GIT_URL.contains('github') }
-                    expression { return env.TAG_NAME ==~ /^KARO-\d{4}-\d{2}-\d{2}$/ }
-                }
+                expression { return params.CREATE_RELEASE }
             }
 
             matrix {
@@ -180,7 +181,7 @@ pipeline {
                 stages {
                     stage('Publish') {
                         steps {
-                            createRelease(env.FAMILY, env.TAG_NAME)
+                            createRelease(env.FAMILY, env.TAG_NAME, env.IMAGES)
                         }
                     }
                 }
