@@ -1,4 +1,4 @@
-@Library('yocto-lib@2.0') _
+@Library('yocto-lib@2.1') _
 
 def machineFamilies = getFamilies('nxp')
 def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
@@ -57,7 +57,6 @@ pipeline {
 
     options {
         timestamps()
-        buildDiscarder(logRotator(numToKeepStr: '30'))
         disableConcurrentBuilds()
         skipDefaultCheckout(true)
         skipStagesAfterUnstable()
@@ -130,13 +129,14 @@ pipeline {
                 stages {
                     stage('Build') {
                         steps {
-                            build job: "karo-bsp/yocto-build/2.0",
+                            build job: "karo-bsp/yocto-build/2.1",
                                 parameters: [
                                     string(name: 'WORKSPACE', value: env.WORKSPACE),
                                     string(name: 'MACHINE', value: env.MACHINE),
                                     string(name: 'IMAGES', value: env.IMAGES),
                                     string(name: 'MODE', value: params.MODE),
-                                    booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES)
+                                    booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES),
+                                    booleanParam(name: 'SHARED_SSTATE', value: !params.CREATE_RELEASE)
                                 ],
                                 wait: true,
                                 propagate: true
@@ -151,38 +151,56 @@ pipeline {
                 expression { return params.CREATE_RELEASE }
             }
 
-            matrix {
-                axes {
-                    axis {
-                        name 'FAMILY'
-                        values  'qs8m',
-                                'qsxm',
-                                'qsxp',
-                                'qs91',
-                                'qs93',
-                                'tx8m',
-                                'tx8p',
-                                'tx91', 
-                                'tx93'
-                    }
-                }
-
-                when {
-                    expression {
-                        def selected = (params.MACHINES ?: '')
-                            .split(',')
-                            .collect { it.trim() }
-                            .findAll { it }
-
-                        return selected.isEmpty() || selected.containsAll(getMachines(env.FAMILY))
-                    }
-                }
-
-                stages {
-                    stage('Publish') {
-                        steps {
-                            createRelease(env.FAMILY, env.TAG_NAME, env.IMAGES)
+            stages {
+                stage('Publish families') {
+                    matrix {
+                        axes {
+                            axis {
+                                name 'FAMILY'
+                                values  'qs8m',
+                                        'qsxm',
+                                        'qsxp',
+                                        'qs91',
+                                        'qs93',
+                                        'tx8m',
+                                        'tx8p',
+                                        'tx91', 
+                                        'tx93'
+                            }
                         }
+
+                        when {
+                            expression {
+                                def selected = (params.MACHINES ?: '')
+                                    .split(',')
+                                    .collect { it.trim() }
+                                    .findAll { it }
+
+                                return selected.isEmpty() || selected.containsAll(getMachines(env.FAMILY))
+                            }
+                        }
+
+                        stages {
+                            stage('Publish') {
+                                steps {
+                                    createRelease(env.FAMILY, env.TAG_NAME, env.IMAGES)
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('Refresh sstate') {
+                    steps {
+                        refreshSstateMirror()
+                    }
+                }
+            }
+
+            post {
+                always {
+                    dir('sstate-cache') {
+                        deleteDir()
                     }
                 }
             }
