@@ -47,7 +47,12 @@ properties([
         booleanParam(
             name: 'CREATE_RELEASE',
             defaultValue: false,
-            description: 'Create and publish release'
+            description: 'Publish release images'
+        ),
+        booleanParam(
+            name: 'REFRESH_SSTATE',
+            defaultValue: false,
+            description: 'Refresh sstate mirror'
         )
     ])
 ])
@@ -68,9 +73,12 @@ pipeline {
     }
 
     stages {
-        stage('Validate Release') {
+        stage('Validate') {
             when {
-                expression { return params.CREATE_RELEASE }
+                anyOf {
+                    expression { return params.CREATE_RELEASE }
+                    expression { return params.REFRESH_SSTATE }
+                }
             }
 
             steps {
@@ -136,7 +144,7 @@ pipeline {
                                     string(name: 'IMAGES', value: env.IMAGES),
                                     string(name: 'MODE', value: params.MODE),
                                     booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES),
-                                    booleanParam(name: 'SHARED_SSTATE', value: !params.CREATE_RELEASE)
+                                    booleanParam(name: 'SHARED_SSTATE', value: !params.REFRESH_SSTATE)
                                 ],
                                 wait: true,
                                 propagate: true
@@ -151,50 +159,50 @@ pipeline {
                 expression { return params.CREATE_RELEASE }
             }
 
-            stages {
-                stage('Publish families') {
-                    matrix {
-                        axes {
-                            axis {
-                                name 'FAMILY'
-                                values  'qs8m',
-                                        'qsxm',
-                                        'qsxp',
-                                        'qs91',
-                                        'qs93',
-                                        'tx8m',
-                                        'tx8p',
-                                        'tx91', 
-                                        'tx93'
-                            }
-                        }
-
-                        when {
-                            expression {
-                                def selected = (params.MACHINES ?: '')
-                                    .split(',')
-                                    .collect { it.trim() }
-                                    .findAll { it }
-
-                                return selected.isEmpty() || selected.containsAll(getMachines(env.FAMILY))
-                            }
-                        }
-
-                        stages {
-                            stage('Publish') {
-                                steps {
-                                    createRelease(env.FAMILY, env.TAG_NAME, env.IMAGES)
-                                }
-                            }
-                        }
+            matrix {
+                axes {
+                    axis {
+                        name 'FAMILY'
+                        values  'qs8m',
+                                'qsxm',
+                                'qsxp',
+                                'qs91',
+                                'qs93',
+                                'tx8m',
+                                'tx8p',
+                                'tx91', 
+                                'tx93'
                     }
                 }
 
-                stage('Refresh sstate') {
-                    steps {
-                        refreshSstateMirror()
+                when {
+                    expression {
+                        def selected = (params.MACHINES ?: '')
+                            .split(',')
+                            .collect { it.trim() }
+                            .findAll { it }
+
+                        return selected.isEmpty() || selected.containsAll(getMachines(env.FAMILY))
                     }
                 }
+
+                stages {
+                    stage('Publish') {
+                        steps {
+                            createRelease(env.FAMILY, env.TAG_NAME, env.IMAGES)
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Refresh sstate') {
+            when {
+                expression { return params.REFRESH_SSTATE }
+            }
+
+            steps {
+                refreshSstateMirror()
             }
 
             post {
