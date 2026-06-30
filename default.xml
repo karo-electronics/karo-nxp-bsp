@@ -1,88 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote name="yocto"       fetch="https://git.yoctoproject.org"/>
-  <remote name="oe"          fetch="https://github.com/openembedded"/>
-  <remote name="community"   fetch="https://github.com/Freescale"/>
-  <remote name="ossystems"   fetch="https://github.com/OSSystems"/>
-  <remote name="qt"          fetch="https://code.qt.io/yocto"/>
-  <remote name="nxp-imx"     fetch="https://github.com/nxp-imx"/>
-  <remote name="imx-support" fetch="https://github.com/nxp-imx-support"/>
-  <remote name="karo"        fetch="https://github.com/karo-electronics"/>
-  <remote name="rauc"        fetch="https://github.com/rauc"/>
+  <remote name="yocto"          fetch="https://git.yoctoproject.org"/>
+  <remote name="oe"             fetch="https://git.openembedded.org"/>
+  <remote name="community"      fetch="https://github.com/Freescale"/>
+  <remote name="ossystems"      fetch="https://github.com/OSSystems"/>
+  <remote name="qt6"            fetch="https://code.qt.io/yocto"/>
+  <remote name="nxp-imx"        fetch="https://github.com/nxp-imx"/>
+  <remote name="imx-support"    fetch="https://github.com/nxp-imx-support"/>
+  <remote name="karo"           fetch="https://github.com/karo-electronics"/>
+  <remote name="rauc"           fetch="https://github.com/rauc"/>
 
-  <project name="meta-arm"
-    path="sources/meta-arm"
+  <project
+    name="openembedded-core"
+    remote="oe"
+    path="sources/poky"
+    revision="ece80784b493c8b7493478fa2ba0dc1d6d80aa79"
+    upstream="scarthgap"
+  />
+
+  <project
+    name="bitbake"
+    remote="oe"
+    path="sources/poky/bitbake"
+    revision="82abbfcdbda949851a03bb2cb2049ea689564ad6"
+    upstream="2.8"
+  />
+
+  <project
+    name="meta-yocto"
     remote="yocto"
+    path="sources/meta-yocto"
+    revision="ca5a51aadaf651881d640688dc3e1e123aa30bf6"
+    upstream="scarthgap"
+    >
+    <linkfile src="meta-poky" dest="sources/poky/meta-poky"/>
+    <linkfile src="meta-yocto-bsp" dest="sources/poky/meta-yocto-bsp"/>
+  </project>
+
+  <project
+    name="meta-openembedded"
+    remote="oe"
+    path="sources/meta-openembedded"
+    revision="d8cc4e44001c7257273d290ce8c4496e93d32841"
+    upstream="scarthgap"
+  />
+
+  <project
+    name="meta-arm"
+    remote="yocto"
+    path="sources/meta-arm"
     revision="950a4afce46a359def2958bd9ae33fc08ff9bb0d"
     upstream="scarthgap"
   />
 
-  <project name="meta-openembedded"
-    path="sources/meta-openembedded"
-    remote="oe"
-    revision="e8fd97d86af86cdcc5a6eb3f301cbaf6a2084943"
-    upstream="scarthgap"
-  />
-
-  <project name="meta-imx"
-    path="sources/meta-imx"
+  <project
+    name="meta-imx"
     remote="nxp-imx"
-    revision="89c4d98c236ac1a2fbfcc92e5adf6571e41bd2da"
-    upstream="scarthgap-6.6.52-2.2.1"
+    path="sources/meta-imx"
+    revision="e1ec1a20d573e3913f4ad90fa36546ed2bc87715"
+    upstream="scarthgap-6.6.52-2.2.2"
   />
 
-  <project name="meta-freescale"
-    path="sources/meta-freescale"
+  <project
+    name="meta-freescale"
     remote="community"
-    revision="0627128b341cfb2bef7a0832ce8cac0ce1127f13"
+    path="sources/meta-freescale"
+    revision="0c27c21cab57876474bb572e5d378b6707e41224"
     upstream="scarthgap"
   />
 
-  <project name="meta-freescale-distro"
-    path="sources/meta-freescale-distro"
+  <project
+    name="meta-freescale-distro"
     remote="community"
+    path="sources/meta-freescale-distro"
     revision="b9d6a5d9931922558046d230c1f5f4ef6ee72345"
     upstream="scarthgap"
   />
 
-  <project name="meta-nxp-demo-experience"
-    path="sources/meta-nxp-demo-experience"
+  <project
+    name="meta-nxp-demo-experience"
     remote="imx-support"
+    path="sources/meta-nxp-demo-experience"
     revision="e8e646e22b1f926aac83bb7ad522efa9cd8ccc45"
     upstream="scarthgap-6.6.52-2.2.0"
   />
 
-  <project name="meta-browser"
-    path="sources/meta-browser"
+  <project
+    name="meta-browser"
     remote="ossystems"
-    revision="dc31889c0899971def535dc1c040edf18bc16691"
-  />
-
-  <project name="meta-qt6"
-    path="sources/meta-qt6"
-    remote="qt"
-    revision="586a6cb5aec755803a3be3cec359baafe89d6432"
-    upstream = "6.8.1"
-  />
-
-  <project name="meta-rauc"
-    remote="rauc"
-    path="sources/meta-rauc"
-    revision="a0f4a8b9986954239850b9d4256c003c91e6b931"
+    path="sources/meta-browser"
+    revision="85eeb6b50883d22c977396f5e8fe211a7961cf2e"
     upstream="scarthgap"
   />
 
-  <project name="poky"
-    path="sources/poky"
-    remote="karo" 		
-    revision="refs/tags/KARO-2025-10-30"
-    upstream="scarthgap-update"
+  <project
+    name="meta-qt6"
+    remote="qt6"
+    path="sources/meta-qt6"
+    revision="00c3bd954341a2a755fdee6b978af952f51793e7"
+    upstream="6.8.3"
   />
 
-  <project name="karo-nxp-base"
-    path="sources/base"
+  <project
+    name="meta-rauc"
+    remote="rauc"
+    path="sources/meta-rauc"
+    revision="d63878f20eba7a85ecf53566e7a3377e78bb46ac"
+    upstream="scarthgap"
+  />
+
+  <project
+    name="meta-karo-nxp"
     remote="karo"
-    revision="refs/tags/KARO-2026-05-28"
+    path="sources/meta-karo-nxp"
+    revision="refs/tags/KARO-2026-06-30"
+    upstream="scarthgap"
+  />
+
+  <project
+    name="meta-karo-distro"
+    remote="karo"
+    path="sources/meta-karo-distro"
+    revision="refs/tags/KARO-2026-06-30"
+    upstream="scarthgap"
+  />
+
+  <project
+    name="karo-nxp-base"
+    remote="karo"
+    path="sources/base"
+    revision="refs/tags/KARO-2026-06-30"
     upstream="scarthgap"
     >
     <linkfile dest="README" src="README"/>
@@ -91,18 +138,4 @@
     <copyfile src="devcontainer/devcontainer.json" dest=".devcontainer/devcontainer.json"/>
     <copyfile src="devcontainer/Dockerfile" dest=".devcontainer/Dockerfile"/>
   </project>
-
-  <project name="meta-karo-nxp"
-    path="sources/meta-karo-nxp"
-    remote="karo"
-    revision="refs/tags/KARO-2026-04-17"
-    upstream="scarthgap"
-  />
-
-  <project name="meta-karo-distro"
-    path="sources/meta-karo-distro"
-    remote="karo"
-    revision="refs/tags/KARO-2026-04-17"
-    upstream="scarthgap"
-  />
 </manifest>
