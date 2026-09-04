@@ -113,7 +113,7 @@
     name="meta-karo-nxp"
     remote="karo"
     path="sources/meta-karo-nxp"
-    revision="refs/tags/KARO-2026-08-12"
+    revision="refs/tags/KARO-2026-09-04"
     upstream="scarthgap"
   />
 
