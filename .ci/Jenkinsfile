@@ -1,0 +1,130 @@
+@Library('yocto-lib@3.1') _
+
+def machineFamilies = getFamilies('nxp')
+def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
+def imageOptions = getImages()
+
+def buildMap = machineFamilies.collectEntries { family -> [family, [:]] }
+
+properties([
+    parameters([
+        [
+            $class: 'ChoiceParameter',
+            name: 'MACHINES',
+            description: 'Select one or more machines. Or nothing for all.',
+            choiceType: 'PT_CHECKBOX',
+            filterable: true,
+            script: [
+                $class: 'GroovyScript',
+                script: [
+                    sandbox: true,
+                    script: "return ${machineOptions.inspect()}"
+                ]
+            ]
+        ],
+        [
+            $class: 'ChoiceParameter',
+            name: 'IMAGES',
+            description: 'Select one or more images. Or nothing for all.',
+            choiceType: 'PT_CHECKBOX',
+            filterable: true,
+            script: [
+                $class: 'GroovyScript',
+                script: [
+                    sandbox: true,
+                    script: "return ${imageOptions.inspect()}"
+                ]
+            ]
+        ],
+        choice(
+            name: 'MODE',
+            choices: ['BUILD', 'BUILD + TEST', 'TEST'],
+            description: 'Choose mode'
+        ),
+        booleanParam(
+            name: 'BUILD_FEATURES',
+            defaultValue: false,
+            description: 'Build distro features'
+        )
+    ])
+])
+
+pipeline {
+    agent any
+
+    options {
+        timestamps()
+        disableConcurrentBuilds()
+        skipDefaultCheckout(true)
+    }
+
+    environment {
+        GIT_URL = "${scm.userRemoteConfigs[0].url}"
+    }
+
+    stages {
+        stage('Checkout') {      
+            when {
+                expression { return params.MODE.contains('BUILD') }
+            }
+
+            steps {
+                deleteDir()
+
+                checkoutYocto(
+                    env.GIT_URL,
+                    env.BRANCH_NAME
+                )
+
+                checkoutTestGrid('1.0')
+            }
+        }
+
+        stage('Build Combinations') {
+            matrix {
+                axes {
+                    axis {
+                        name 'FAMILY'
+                        values  'tx6s',
+                                'tx6u',
+                                'tx6q',
+                                'txul',
+                                'qs8m',
+                                'qsxm',
+                                'qsxp',
+                                'qs91',
+                                'qs93',
+                                'tx8m',
+                                'tx8p',
+                                'tx91',
+                                'tx93'
+                    }
+                }
+
+                when {
+                    expression {
+                        def selected = (params.MACHINES ?: '')
+                            .split(',')
+                            .collect { it.trim() }
+                            .findAll { it }
+
+                        return selected.isEmpty() || selected.any { it.startsWith(env.FAMILY) }
+                    }
+                }
+
+                stages {
+                    stage('Build') {
+                        steps {
+                            buildFamily(env.FAMILY, params.MACHINES.split(','), buildMap[env.FAMILY])
+                        }
+                        post {
+                            always {
+                                abortBuilds(buildMap[env.FAMILY])
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
