@@ -43,6 +43,13 @@
                 "rev": "70b7591ecaa99cb6366f93ee05df7c38d94d724b"
             }
         },
+        "meta-freescale-ml": {
+            "git-remote": {
+                "uri": "https://github.com/Freescale/meta-freescale-ml",
+                "branch": "master",
+                "rev": "1330790bc6cdd3808260a16383d928e05a0e0eeb"
+            }
+        },
         "meta-arm": {
             "git-remote": {
                 "uri": "https://git.yoctoproject.org/meta-arm",
@@ -83,6 +90,7 @@
                 "meta-openembedded/meta-python",
                 "meta-freescale",
                 "meta-freescale-distro",
+                "meta-freescale-ml",
                 "meta-imx/meta-imx-bsp",
                 "meta-imx/meta-imx-sdk",
                 "meta-imx/meta-imx-ml",
@@ -106,15 +114,15 @@
                 "distro": {
                     "description": "Target distributions",
                     "options" : [
-                        { "name": "distro/karo-imx-minimal", "description": "Ka-Ro i.MX Minimal Distro" },
-                        { "name": "distro/karo-imx-wayland", "description": "Ka-Ro i.MX Distro with Wayland" }
+                        { "name": "distro/karo-minimal", "description": "Ka-Ro i.MX Minimal Distro" },
+                        { "name": "distro/karo-wayland", "description": "Ka-Ro i.MX Distro with Wayland" }
                     ]
                 },
                 "baseboard": {
                     "description": "Target baseboard",
                     "options" : [
                         { "name": "", "description": "No baseboard" },
-                        { "name": "karo-imx/baseboard/qsbase95", "description": "Ka-Ro QSBase95 baseboard" }
+                        { "name": "karo-nxp/baseboard/qsbase95", "description": "Ka-Ro QSBase95 baseboard" }
                     ]
                 }
             },
@@ -123,8 +131,8 @@
                 "name": "default",
                 "description": "Setup default configuration",
                 "oe-fragments": [
-                    "karo-imx/diskmon-perf",
-                    "karo-imx/debian-pkgs",
+                    "karo-distro/diskmon-perf",
+                    "karo-distro/debian-pkgs",
                     "core/yocto/root-login-with-empty-password"
                 ]
             },
@@ -133,8 +141,8 @@
                 "description": "Accept Freescale/NXP EULA and setup default configuration",
                 "oe-fragments": [
                     "freescale-layer/eula/accept-fsl-eula",
-                    "karo-imx/diskmon-perf",
-                    "karo-imx/debian-pkgs",
+                    "karo-distro/diskmon-perf",
+                    "karo-distro/debian-pkgs",
                     "core/yocto/root-login-with-empty-password"
                 ]
             }
