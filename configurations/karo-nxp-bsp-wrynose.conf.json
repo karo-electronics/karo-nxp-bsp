@@ -104,6 +104,14 @@
                 "meta-karo-distro"
             ],
             "setup-dir-name": "$distro-$machine-wrynose",
+            "oe-fragments": [
+                "karo-distro/diskmon-perf",
+                "karo-distro/rpm-pkgs",
+                "karo-distro/read-only-rootfs", 
+                "karo-distro/qemu-sdl", 
+                "karo-distro/alternatives-symlinks-relative",
+                "core/yocto/root-login-with-empty-password"
+            ],
             "oe-fragments-one-of": {
                 "machine": {
                     "description": "Target machines",
@@ -130,20 +138,13 @@
             {
                 "name": "default",
                 "description": "Setup default configuration",
-                "oe-fragments": [
-                    "karo-distro/diskmon-perf",
-                    "karo-distro/debian-pkgs",
-                    "core/yocto/root-login-with-empty-password"
-                ]
+                "oe-fragments": []
             },
             {
                 "name": "default-with-eula",
                 "description": "Accept Freescale/NXP EULA and setup default configuration",
                 "oe-fragments": [
-                    "freescale-layer/eula/accept-fsl-eula",
-                    "karo-distro/diskmon-perf",
-                    "karo-distro/debian-pkgs",
-                    "core/yocto/root-login-with-empty-password"
+                    "freescale-layer/eula/accept-fsl-eula"
                 ]
             }
             ]

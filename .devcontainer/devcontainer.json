@@ -14,6 +14,8 @@
 
   "remoteUser": "yoctouser",
 
+  "postCreateCommand": "bitbake-setup settings set --global default dl-dir /yocto-shared/downloads",
+
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=delegated",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 

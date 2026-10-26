@@ -18,6 +18,10 @@ Ka-Ro flavoured NXP i.MX BSP release.
 5. Choose the different configuration options as desired
 6. Open the generated Yocto workspace under bitbake-builds with VS Code (inside the Dev Container)
 
+### Ka-Ro Yocto Guide ###
+
+https://karo-electronics.github.io/docs/yocto-guide/nxp/setup.html#bsp-checkout
+
 ---
 https://www.karo-electronics.com
 
