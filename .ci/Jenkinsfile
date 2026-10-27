@@ -1,4 +1,4 @@
-@Library('yocto-lib@3.1') _
+@Library('yocto-lib@9.0') _
 
 def machineFamilies = getFamilies('nxp')
 def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
@@ -40,11 +40,6 @@ properties([
             name: 'MODE',
             choices: ['BUILD', 'BUILD + TEST', 'TEST'],
             description: 'Choose mode'
-        ),
-        booleanParam(
-            name: 'BUILD_FEATURES',
-            defaultValue: false,
-            description: 'Build distro features'
         )
     ])
 ])
@@ -55,27 +50,12 @@ pipeline {
     options {
         timestamps()
         disableConcurrentBuilds()
-        skipDefaultCheckout(true)
-    }
-
-    environment {
-        GIT_URL = "${scm.userRemoteConfigs[0].url}"
     }
 
     stages {
-        stage('Checkout') {      
-            when {
-                expression { return params.MODE.contains('BUILD') }
-            }
-
+        stage('Configure') {      
             steps {
-                deleteDir()
-
-                checkoutYocto(
-                    env.GIT_URL,
-                    env.BRANCH_NAME
-                )
-
+                checkoutYocto()
                 checkoutTestGrid('1.0')
             }
         }
@@ -85,19 +65,7 @@ pipeline {
                 axes {
                     axis {
                         name 'FAMILY'
-                        values  'tx6s',
-                                'tx6u',
-                                'tx6q',
-                                'txul',
-                                'qs8m',
-                                'qsxm',
-                                'qsxp',
-                                'qs91',
-                                'qs93',
-                                'tx8m',
-                                'tx8p',
-                                'tx91',
-                                'tx93'
+                        values  'qs95'
                     }
                 }
 

@@ -1,3 +1,4 @@
 pyshtables.py
 bitbake-builds/site.conf
 bitbake-builds/*/
+__pycache__

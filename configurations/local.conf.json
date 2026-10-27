@@ -129,8 +129,8 @@
                 "baseboard": {
                     "description": "Target baseboard",
                     "options" : [
-                        { "name": "", "description": "No baseboard" },
-                        { "name": "karo-nxp/baseboard/qsbase95", "description": "Ka-Ro QSBase95 baseboard" }
+                        { "name": "baseboard/", "description": "No baseboard" },
+                        { "name": "baseboard/qsbase95", "description": "Ka-Ro QSBase95 baseboard" }
                     ]
                 }
             },
