@@ -109,7 +109,6 @@
                 "karo-distro/rpm-pkgs",
                 "karo-distro/read-only-rootfs", 
                 "karo-distro/qemu-sdl", 
-                "karo-distro/alternatives-symlinks-relative",
                 "core/yocto/root-login-with-empty-password"
             ],
             "oe-fragments-one-of": {
