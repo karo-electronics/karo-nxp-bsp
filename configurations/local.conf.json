@@ -122,7 +122,8 @@
                     "description": "Target distributions",
                     "options" : [
                         { "name": "distro/karo-minimal", "description": "Ka-Ro i.MX Minimal Distro" },
-                        { "name": "distro/karo-wayland", "description": "Ka-Ro i.MX Distro with Wayland" }
+                        { "name": "distro/karo-wayland", "description": "Ka-Ro i.MX Distro with Wayland" },
+                        { "name": "distro/karo-xwayland", "description": "Ka-Ro i.MX Distro with Wayland and X11 compatibility layer" }
                     ]
                 },
                 "baseboard": {
