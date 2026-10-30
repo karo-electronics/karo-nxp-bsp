@@ -64,6 +64,13 @@
                 "rev": "refs/tags/rel_imx_6.18.20_2.0.0"
             }
         },
+        "meta-qt6": {
+            "git-remote": {
+                "uri": "https://github.com/YoeDistro/meta-qt6",
+                "branch": "6.11",
+                "rev": "302c4fab8d230f5cb7b21e4304c728831a0658cb"
+            }
+        },
         "meta-karo-nxp": {
             "git-remote": {
                 "uri": "ssh://git@buildserver-maxwell:2222/Ka-Ro/meta-karo-nxp.git",
@@ -100,6 +107,7 @@
                 "meta-openembedded/meta-networking",
                 "meta-openembedded/meta-filesystems",
                 "meta-openembedded/meta-perl",
+                "meta-qt6",
                 "meta-karo-nxp",
                 "meta-karo-distro"
             ],
