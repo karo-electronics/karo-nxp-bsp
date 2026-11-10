@@ -115,8 +115,6 @@
             "oe-fragments": [
                 "karo-distro/diskmon-perf",
                 "karo-distro/rpm-pkgs",
-                "karo-distro/read-only-rootfs", 
-                "karo-distro/qemu-sdl", 
                 "core/yocto/root-login-with-empty-password"
             ],
             "oe-fragments-one-of": {
