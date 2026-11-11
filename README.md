@@ -8,7 +8,7 @@ For documentation see our Yocto Guide: https://karo-electronics.github.io/docs/y
 
 ### Requirements
 
-- Linux system (Ubuntu-based distirbution recommended)
+- Linux system (Ubuntu-based distribution recommended)
 - Docker engine installed and running
 - VS Code installed
 - VS Code Dev Containers extension
