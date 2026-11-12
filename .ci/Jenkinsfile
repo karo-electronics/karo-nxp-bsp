@@ -56,7 +56,7 @@ pipeline {
         stage('Configure') {      
             steps {
                 checkoutYocto()
-                checkoutTestGrid('1.0')
+                checkoutTestGrid('1.1')
             }
         }
 
