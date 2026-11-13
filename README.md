@@ -4,7 +4,7 @@ Ka-Ro flavoured NXP i.MX BSP release.
 
 ### BSP Checkout ###
 
-https://karo-electronics.github.io/docs/yocto-guide/nxp/setup.html#bsp-checkout
+https://karo-electronics.github.io/docs/software-documentation/yocto-guide/bsp/nxp/setup.html#bsp-checkout
 
 ---
 https://www.karo-electronics.com
