@@ -113,24 +113,24 @@
     name="meta-karo-nxp"
     remote="karo"
     path="sources/meta-karo-nxp"
-    revision="refs/tags/KARO-2026-06-30"
-    upstream="scarthgap"
+    revision="refs/tags/KARO-2026-11-12"
+    upstream="scarthgap-imx9-bugfix"
   />
 
   <project
     name="meta-karo-distro"
     remote="karo"
     path="sources/meta-karo-distro"
-    revision="refs/tags/KARO-2026-06-30"
-    upstream="scarthgap"
+    revision="refs/tags/KARO-2026-11-12"
+    upstream="scarthgap-imx9-bugfix"
   />
 
   <project
     name="karo-nxp-base"
     remote="karo"
     path="sources/base"
-    revision="refs/tags/KARO-2026-06-30"
-    upstream="scarthgap"
+    revision="refs/tags/KARO-2026-11-12"
+    upstream="scarthgap-imx9-bugfix"
     >
     <linkfile dest="README" src="README"/>
     <linkfile dest="karo-setup-release.sh" src="karo-setup-release.sh"/>
