@@ -1,8 +1,10 @@
-@Library('yocto-lib@2.1') _
+@Library('yocto-lib@3.1') _
 
 def machineFamilies = getFamilies('nxp')
 def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
 def imageOptions = getImages()
+
+def buildMap = machineFamilies.collectEntries { family -> [family, [:]] }
 
 properties([
     parameters([
@@ -99,7 +101,7 @@ pipeline {
                     env.BRANCH_NAME
                 )
 
-                checkoutTestGrid('1.0')
+                checkoutTestGrid('1.1')
             }
         }
 
@@ -107,19 +109,20 @@ pipeline {
             matrix {
                 axes {
                     axis {
-                        name 'MACHINE'
-                        values  'qs8m-mq00',
-                                'qs8m-nd00',
-                                'qs91-3110',
-                                'qs93-5210',
-                                'qsxm-mm60',
-                                'qsxp-ml81',
-                                'tx8m-1610',
-                                'tx8m-1620',
-                                'tx8m-nd00',
-                                'tx8p-ml81',
-                                'tx91-3110',
-                                'tx93-5210'
+                        name 'FAMILY'
+                        values  'tx6s',
+                                'tx6u',
+                                'tx6q',
+                                'txul',
+                                'qs8m',
+                                'qsxm',
+                                'qsxp',
+                                'qs91',
+                                'qs93',
+                                'tx8m',
+                                'tx8p',
+                                'tx91',
+                                'tx93'
                     }
                 }
 
@@ -130,24 +133,19 @@ pipeline {
                             .collect { it.trim() }
                             .findAll { it }
 
-                        return selected.isEmpty() || selected.contains(env.MACHINE)
+                        return selected.isEmpty() || selected.any { it.startsWith(env.FAMILY) }
                     }
                 }
 
                 stages {
                     stage('Build') {
                         steps {
-                            build job: "karo-bsp/yocto-build/2.1",
-                                parameters: [
-                                    string(name: 'WORKSPACE', value: env.WORKSPACE),
-                                    string(name: 'MACHINE', value: env.MACHINE),
-                                    string(name: 'IMAGES', value: env.IMAGES),
-                                    string(name: 'MODE', value: params.MODE),
-                                    booleanParam(name: 'BUILD_FEATURES', value: params.BUILD_FEATURES),
-                                    booleanParam(name: 'SHARED_SSTATE', value: !params.REFRESH_SSTATE)
-                                ],
-                                wait: true,
-                                propagate: true
+                            buildFamily(env.FAMILY, params.MACHINES.split(','), buildMap[env.FAMILY])
+                        }
+                        post {
+                            always {
+                                abortBuilds(buildMap[env.FAMILY])
+                            }
                         }
                     }
                 }
@@ -163,14 +161,18 @@ pipeline {
                 axes {
                     axis {
                         name 'FAMILY'
-                        values  'qs8m',
+                        values  'tx6s',
+                                'tx6u',
+                                'tx6q',
+                                'txul',
+                                'qs8m',
                                 'qsxm',
                                 'qsxp',
                                 'qs91',
                                 'qs93',
                                 'tx8m',
                                 'tx8p',
-                                'tx91', 
+                                'tx91',
                                 'tx93'
                     }
                 }
