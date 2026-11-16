@@ -40,6 +40,16 @@ properties([
             name: 'MODE',
             choices: ['BUILD', 'BUILD + TEST', 'TEST'],
             description: 'Choose mode'
+        ),
+        booleanParam(
+            name: 'CREATE_RELEASE',
+            defaultValue: false,
+            description: 'Publish release images'
+        ),
+        booleanParam(
+            name: 'REFRESH_SSTATE',
+            defaultValue: false,
+            description: 'Refresh sstate mirror'
         )
     ])
 ])
@@ -50,9 +60,23 @@ pipeline {
     options {
         timestamps()
         disableConcurrentBuilds()
+        skipStagesAfterUnstable()
     }
 
     stages {
+        stage('Validate') {
+            when {
+                anyOf {
+                    expression { return params.CREATE_RELEASE }
+                    expression { return params.REFRESH_SSTATE }
+                }
+            }
+
+            steps {
+                checkIfReleasable(params.MODE, env.GIT_URL, env.TAG_NAME)
+            }
+        }
+
         stage('Configure') {      
             steps {
                 checkoutYocto()
@@ -90,6 +114,58 @@ pipeline {
                                 abortBuilds(buildMap[env.FAMILY])
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        stage('Create Release') {
+            when {
+                expression { return params.CREATE_RELEASE }
+            }
+
+            matrix {
+                axes {
+                    axis {
+                        name 'FAMILY'
+                        values  'qs95'
+                    }
+                }
+
+                when {
+                    expression {
+                        def selected = (params.MACHINES ?: '')
+                            .split(',')
+                            .collect { it.trim() }
+                            .findAll { it }
+
+                        return selected.isEmpty() || selected.containsAll(getMachines(env.FAMILY))
+                    }
+                }
+
+                stages {
+                    stage('Publish') {
+                        steps {
+                            createRelease(env.FAMILY, env.TAG_NAME, env.IMAGES)
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Refresh sstate') {
+            when {
+                expression { return params.REFRESH_SSTATE }
+            }
+
+            steps {
+                refreshSstateMirror()
+            }
+
+            post {
+                always {
+                    dir('sstate-cache') {
+                        deleteDir()
                     }
                 }
             }
