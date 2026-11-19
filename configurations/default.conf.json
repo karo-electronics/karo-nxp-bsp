@@ -75,14 +75,14 @@
             "git-remote": {
                 "uri": "https://github.com/karo-electronics/meta-karo-nxp.git",
                 "branch": "wrynose",
-                "rev": "refs/tags/wrynose-26-11"
+                "rev": "refs/tags/wrynose-26-11.1"
             }
         },
         "meta-karo-distro": {
             "git-remote": {
                 "uri": "https://github.com/karo-electronics/meta-karo-distro.git",
                 "branch": "wrynose",
-                "rev": "refs/tags/wrynose-26-11"
+                "rev": "refs/tags/wrynose-26-11.1"
             }
         }
     },
