@@ -121,7 +121,7 @@
                 "machine": {
                     "description": "Target machines",
                     "options" : [
-                        { "name": "machine/qs95-5610", "description": "i.MX 95 Ka-Ro QS95-5610 module" }
+                        { "name": "machine/qs95-9610", "description": "i.MX 95 Ka-Ro QS95-9610 module" }
                     ]
                 },
                 "distro": {
