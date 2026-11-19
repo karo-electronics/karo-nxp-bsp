@@ -1,4 +1,4 @@
-@Library('yocto-lib@9.0') _
+@Library('yocto-lib@9.1') _
 
 def machineFamilies = getFamilies('nxp')
 def machineOptions = machineFamilies.collectMany { family -> getMachines(family) }
