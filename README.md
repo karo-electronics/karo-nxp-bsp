@@ -2,7 +2,7 @@
 
 Ka-Ro flavoured NXP i.MX BSP release.
 
-For documentation see our Yocto Guide: https://karo-electronics.github.io/docs/yocto-guide/index.html
+For documentation see our Yocto Guide: https://karo-electronics.github.io/docs/software-documentation/yocto-guide/wrynose/index.html
 
 ## Setup (VS Code)
 
